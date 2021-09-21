@@ -2,7 +2,7 @@
 
 Flask version of personal assistant.
 
-New features added: blueprints, authentification.
+New features added: blueprints, authentification, HTML templates inheritance.
 
 Inline with given recomendations: 
 
