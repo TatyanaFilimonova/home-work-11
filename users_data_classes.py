@@ -31,7 +31,7 @@ class AppUserMongo(ApplicationUser):
     def get_user(self, login):
         res = self.user_db.find_one({'login': login})
         if res is not None:
-            user = Mongo_user(res)
+            user = UserMongo(res)
             return user
         else:
             return res    
@@ -75,7 +75,7 @@ class AppUserPSQL(ApplicationUser):
         if res is None:
             return res
         else:
-            return Postgres_user(res)   
+            return UserPSQL(res)
 
     @LRU_cache_invalidate('get_user')
     def insert_user(self, name_, login_, password_):
@@ -108,14 +108,14 @@ class AppUserPSQL(ApplicationUser):
             return e
 
 
-class User_abstract(ABC):
+class UserAbstract(ABC):
 
     @abstractmethod
     def __init__(self):
         pass
 
 
-class Mongo_user(User_abstract):
+class UserMongo(UserAbstract):
 
     def __init__(self, json):
         self.id = json['_id']
@@ -124,7 +124,7 @@ class Mongo_user(User_abstract):
         self.password = json['password']
         
 
-class Postgres_user(User_abstract):
+class UserPSQL(UserAbstract):
 
     def __init__(self, result):
         self.id = result.id
