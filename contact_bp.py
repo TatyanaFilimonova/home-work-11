@@ -191,6 +191,6 @@ def delete_contact():
 def contact_delete_(id):
    res = global_var.contact_book.delete_contact(id)
    if res ==0: 
-      return render_template('contact/contact_delete_OK.html', id = id)
+      return render_template('contact/contact_delete_OK.html', id=id)
    else:
       return html_error(res)    
