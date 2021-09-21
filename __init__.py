@@ -8,7 +8,7 @@ import threading
 
 
 def init_app():
-    predict_warmup = threading.Thread(target=predict_class, args=("warn up",))
+    predict_warmup = threading.Thread(target=predict_class, args=("warm up",))
     predict_warmup.start()
     app = Flask(__name__, instance_relative_config=True)
     app.register_blueprint(login_bp.login_bp)
